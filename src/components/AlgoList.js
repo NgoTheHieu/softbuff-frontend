@@ -3,6 +3,7 @@ import Rheostat from "rheostat";
 import ThemedStyleSheet from "react-with-styles/lib/ThemedStyleSheet";
 import aphroditeInterface from "react-with-styles-interface-aphrodite";
 import DefaultTheme from "rheostat/lib/themes/DefaultTheme";
+import { Accordion, Card, Button } from "react-bootstrap";
 import { Row, Col, Badge } from "react-bootstrap";
 import moment from "moment";
 import "./QuestionList.css";
@@ -38,7 +39,7 @@ export default function AlgoList(props) {
   // state={
   //   collapseID: "collapse1"
   // }
-  
+
   // console.log(props.QuestionList.ques);
   function useQuery() {
     return new URLSearchParams(useLocation().search);
@@ -117,83 +118,87 @@ export default function AlgoList(props) {
       <div className="m-5 ">
         {" "}
         <MDBContainer className="">
-        <MDBContainer className="bgapp">
-        <div class="accordion" id="accordionExample">
-        <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          Collapsible Group Item #1
-        </button>
-      </h2>
-    </div>
-
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-      <div class="card-body">
-      <div className="job-content m-1" >
-        
-        <MDBTypography blockquote bqColor="warning">
-                  <MDBBox tag="p" mb={0} className="bq-title">
+          <MDBContainer className="bgapp">
+            <Accordion defaultActiveKey="0">
+              <Card>
+                <Card.Header>
+                  <Accordion.Toggle as={Button} variant="link" eventKey="0">
                     Filtering Data
-                  </MDBBox>
-                </MDBTypography>
-          <Row>
-            <Col xs={8}>
-              <div className="jobcard-descriptions">
-                <h2 className="jobcard-title">{props.title}</h2>
-                <div>
-                <Rheostat
-              min={0}
-              max={10}
-              values={[minDifficulty, maxDifficulty]}
-              onValuesUpdated={handleValuesUpdated}
-              onChange={handleChange}
-              
-            />
-            
-            <MDBRow>
-              <>
-              </>
-              <MDBTypography note noteColor="warning" tag="h1" variant="h1">
-                Difficulties:{tempMinDiff}/10
-              </MDBTypography>
-              
-              <MDBTypography note noteColor="warning" tag="h1" variant="h1">
-                Difficulties:{tempMaxDiff}/10
-              </MDBTypography>
-            </MDBRow>
-                  <div>
-                  </div>
-                </div>
-  
-                <div>
-    <ul className="benefit-list"></ul>
-    <ul className="benefit-list"></ul>
-                </div>
-              </div>
-            </Col>
-            <Col>
+                  </Accordion.Toggle>
+                </Card.Header>
+                <Accordion.Collapse eventKey="0">
+                  <Card.Body>
+                    {" "}
+                    <div className="job-content m-1">
+                      <MDBTypography blockquote bqColor="warning">
+                        <MDBBox tag="p" mb={0} className="bq-title">
+                          Filtering Data
+                        </MDBBox>
+                      </MDBTypography>
+                      <Row>
+                        <Col xs={8}>
+                          <div className="jobcard-descriptions">
+                            <h2 className="jobcard-title">{props.title}</h2>
+                            <div>
+                              <Rheostat
+                                min={0}
+                                max={10}
+                                values={[minDifficulty, maxDifficulty]}
+                                onValuesUpdated={handleValuesUpdated}
+                                onChange={handleChange}
+                              />
+
+                              <MDBRow>
+                                <></>
+                                <MDBTypography
+                                  note
+                                  noteColor="warning"
+                                  tag="h1"
+                                  variant="h1"
+                                >
+                                  Difficulties:{tempMinDiff}/10
+                                </MDBTypography>
+
+                                <MDBTypography
+                                  note
+                                  noteColor="warning"
+                                  tag="h1"
+                                  variant="h1"
+                                >
+                                  Difficulties:{tempMaxDiff}/10
+                                </MDBTypography>
+                              </MDBRow>
+                              <div></div>
+                            </div>
+
+                            <div>
+                              <ul className="benefit-list"></ul>
+                              <ul className="benefit-list"></ul>
+                            </div>
+                          </div>
+                        </Col>
+                        <Col>
+                          <MDBCol xs={12} md={8}>
+                            <MDBRow>
+                              <MDBInput
+                                label="Search for keyword"
+                                color="danger"
+                                onIconClick={() =>
+                                  alert("Wait! This is an alert!")
+                                }
+                              />
+                            </MDBRow>
+                          </MDBCol>
+                        </Col>
+                      </Row>
+                    </div>
+                  </Card.Body>
+                </Accordion.Collapse>
+              </Card>
              
-            <MDBCol xs={12} md={8}>
-              <MDBRow>
-                <MDBInput
-                  label="Search for keyword"
-                  color="danger"
-                  onIconClick={() => alert("Wait! This is an alert!")}
-                />
-              </MDBRow>
-            </MDBCol>
-  
-            </Col>
-          </Row>
-        </div>
-      </div>
-    </div>
-  </div>
-          </div>
-    </MDBContainer>
-          
-          
+            </Accordion>
+            
+          </MDBContainer>
         </MDBContainer>
         {item.map((e) => (
           <Question {...e} />

@@ -40,7 +40,6 @@ export default function MainPage(props) {
   return (<>
     <Navbar2 user={user} logout={logout}/>  
     <div className="bodyimage">
-      <CardExample/>
       <ProductCategories />
     </div>
     <Footer />

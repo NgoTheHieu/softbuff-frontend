@@ -49,7 +49,6 @@ class Navbar2 extends React.Component {
           <MDBNavbar dark expand="md fixed-top d-inline-flex" >
             <MDBContainer>
               <MDBNavbarBrand>
-              <MDBBtn outline color="success">BambooSoft</MDBBtn>
               </MDBNavbarBrand>
               <MDBNavbarToggler
                 onClick={this.toggleCollapse("navbarCollapse")}
@@ -61,19 +60,19 @@ class Navbar2 extends React.Component {
               >
                 <MDBNavbarNav left>
                   <MDBNavItem>
-                    <MDBNavLink to="/"> <MDBBtn color="transparent" size="sm">Home</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/"> <MDBBtn color="green" size="sm">Home</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/question"> <MDBBtn color="transparent" size="sm">Questions</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/question"> <MDBBtn color="green" size="sm">Questions</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
-                    <MDBNavLink to="/developer"> <MDBBtn color="transparent" size="sm">Developers</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/developer"> <MDBBtn color="green" size="sm">Developers</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
 
                   <MDBNavItem>
-                    <MDBNavLink to="/signup"><MDBBtn color="transparent" size="sm">Signup</MDBBtn></MDBNavLink>
+                    <MDBNavLink to="/signup"><MDBBtn color="green" size="sm">Signup</MDBBtn></MDBNavLink>
                   </MDBNavItem>
                   {this.props.user?null:<MDBNavItem>
                     <MDBNavLink to="/login"><MDBBtn color="transparent" size="sm">Login</MDBBtn></MDBNavLink>
@@ -119,11 +118,8 @@ class Navbar2 extends React.Component {
               <MDBRow>
                 <MDBCol md="12" className="mb-4 text-success text-center">
                   <h3 className="display-3 font-weight-bold mb-0 pt-md-5">
-                    Bamboo Trees{" "}
-                    
+                   
                   </h3>
-                  <hr className="hr-light my-4 w-75" />
-          
                 </MDBCol>
                 
               </MDBRow>

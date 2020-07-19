@@ -40,7 +40,7 @@ export default function AlgoList(props) {
   const [item, setItem] = useState([]);
   const history = useHistory();
   const query = useQuery();
-  const [originalList, setOriginalList] = useState([]);
+  const [originalList, setOriginalList] = useState(item);
 
   const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
   // state={
@@ -55,14 +55,15 @@ export default function AlgoList(props) {
 
   useEffect(() => {
     getItemList();
-    handleFilterSearch();
-  }, [minDifficulty, maxDifficulty, pageNum, item]);
+  
+  }, [minDifficulty, maxDifficulty, pageNum]);
   const getItemList = async () => {
     const url = `http://localhost:5000/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
     const data = await fetch(url);
     const response = await data.json();
     console.log("AlgoList", response.data.ques);
     setItem(response.data.ques);
+    setOriginalList(response.data.ques);
   };
   const handleFilterSearch = (e) => {
     let filteredList = item;
@@ -211,6 +212,7 @@ export default function AlgoList(props) {
                                 }
                                 onChange={(e) => setKeyword(e.target.value)}
                               />
+                              <Button onClick={()=>{handleFilterSearch()}}>Search</Button>
                             </MDBRow>
                           </MDBCol>
                         </Col>

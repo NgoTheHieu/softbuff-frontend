@@ -1,133 +1,50 @@
-import React from "react";
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import React from 'react';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import Link from '@material-ui/core/Link';
 
-const FooterPagePro = () => {
+function Copyright() {
   return (
-      <>
-      <MDBContainer><MDBFooter color="stylish-color-dark" className="page-footer font-small pt-4 mt-4">
-      <MDBContainer fluid className="text-center text-md-left">
-        <MDBRow>
-          <MDBCol md="6">
-            <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Footer Content
-            </h5>
-            <p>
-              Here you can use rows and columns here to organize your footer
-              content. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit.
-            </p>
-          </MDBCol>
-          <hr className="clearfix w-100 d-md-none" />
-          <MDBCol md="2">
-            <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
-            </h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-          <hr className="clearfix w-100 d-md-none" />
-          <MDBCol md="2">
-            <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
-            </h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-          <hr className="clearfix w-100 d-md-none" />
-          <MDBCol md="2">
-            <h5 className="text-uppercase mb-4 mt-3 font-weight-bold">
-              Links
-            </h5>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#!">Link 1</a>
-              </li>
-              <li>
-                <a href="#!">Link 2</a>
-              </li>
-              <li>
-                <a href="#!">Link 3</a>
-              </li>
-              <li>
-                <a href="#!">Link 4</a>
-              </li>
-            </ul>
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <hr />
-      <div className="text-center py-3">
-        <ul className="list-unstyled list-inline mb-0">
-          <li className="list-inline-item">
-            <h5 className="mb-1">Register for free</h5>
-          </li>
-          <li className="list-inline-item">
-            <a href="#!" className="btn btn-danger btn-rounded">
-              Sign up!
-            </a>
-          </li>
-        </ul>
-      </div>
-      <hr />
-      <div className="text-center">
-        <ul className="list-unstyled list-inline">
-          <li className="list-inline-item">
-            <a className="btn-floating btn-sm btn-fb mx-1">
-              <i className="fab fa-facebook-f"> </i>
-            </a>
-          </li>
-          <li className="list-inline-item">
-            <a className="btn-floating btn-sm btn-tw mx-1">
-              <i className="fab fa-twitter"> </i>
-            </a>
-          </li>
-          <li className="list-inline-item">
-            <a className="btn-floating btn-sm btn-gplus mx-1">
-              <i className="fab fa-google-plus"> </i>
-            </a>
-          </li>
-          <li className="list-inline-item">
-            <a className="btn-floating btn-sm btn-li mx-1">
-              <i className="fab fa-linkedin-in"> </i>
-            </a>
-          </li>
-          <li className="list-inline-item">
-            <a className="btn-floating btn-sm btn-dribbble mx-1">
-              <i className="fab fa-dribbble"> </i>
-            </a>
-          </li>
-        </ul>
-      </div>
-      <div className="footer-copyright text-center py-3">
-      </div>
-    </MDBFooter></MDBContainer>
-    
-    </>
+    <Typography variant="body2" color="textSecondary">
+      {'Copyright © '}
+      <Link color="inherit" href="https://material-ui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default FooterPagePro;
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column',
+    minHeight: '100vh',
+  },
+  main: {
+    marginTop: theme.spacing(8),
+    marginBottom: theme.spacing(2),
+  },
+  footer: {
+    padding: theme.spacing(3, 2),
+    marginTop: 'auto',
+    backgroundColor:
+      theme.palette.type === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+  },
+}));
+
+export default function StickyFooter() {
+  const classes = useStyles();
+
+  return (
+      <footer className={classes.footer}>
+        <Container maxWidth="sm">
+          <Typography variant="body1">My sticky footer can be found here.</Typography>
+          <Copyright />
+        </Container>
+      </footer>
+  );
+}

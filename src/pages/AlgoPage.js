@@ -34,6 +34,7 @@ export default function AlgoPage() {
     <div className="bodyimage">
       <AlgoList  />
     </div>
+    <Footer />
     </>
   );
 }

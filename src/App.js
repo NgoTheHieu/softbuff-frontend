@@ -13,6 +13,7 @@ import SignupPage from "./pages/SignupPage";
 import CreatePage from "./pages/Create";
 import DeveloperPage from "./pages/DeveloperPage";
 import ProfilePage from "./pages/ProfilePage"
+import AdminPage from "./pages/AdminPage"
 function App(props) {
   let user2 = {
     isAuthenticated: true,
@@ -52,7 +53,7 @@ function App(props) {
       <Route path="/create" exact component={CreatePage} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/profile/me" exact component={(props)=><ProfilePage {...props}/>} />
-      
+      <Route path="/admin" exact component={(props)=><AdminPage {...props}/>} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <ProtectedRoute
         path="/user/:id"

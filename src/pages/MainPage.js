@@ -5,6 +5,7 @@ import CreateQuizForm from "../components/CreateQuizForm";
 import AlgoList from "../components/AlgoList";
 import FormC from "../components/Error";
 import CardExample from "../components/LandingCard"
+import ProductCategories from '../components/OnePirate/modules/views/ProductCategories';
 import "../pages/pagedescript.css"
 export default function MainPage(props) {
   const [user,setUser] = useState({
@@ -40,7 +41,9 @@ export default function MainPage(props) {
     <Navbar2 user={user} logout={logout}/>  
     <div className="bodyimage">
       <CardExample/>
+      <ProductCategories />
     </div>
+    <Footer />
     </>
   );
 }

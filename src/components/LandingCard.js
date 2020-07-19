@@ -9,15 +9,14 @@ import {
   MDBRow,
   MDBCol,
   MDBIcon,
-  MDBView,MDBContainer
+  MDBView,
+  MDBContainer,
 } from "mdbreact";
-
 const CardExample = () => {
   return (
+    <>
     <MDBContainer className="mt-1 d-flex align-items-stretch">
       <MDBRow>
-
-
         <MDBCol md="4">
           <MDBCard>
             <MDBCardImage
@@ -41,8 +40,6 @@ const CardExample = () => {
               </MDBCardText>
 
               <MDBCol md="12" className="d-flex justify-content-center">
-
-
                 <MDBBtn rounded floating color="dribbble">
                   <MDBIcon size="lg" fab icon="link"></MDBIcon>
                 </MDBBtn>
@@ -128,6 +125,8 @@ const CardExample = () => {
         </MDBCol>
       </MDBRow>
     </MDBContainer>
+    
+    </>
   );
 };
 

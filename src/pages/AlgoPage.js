@@ -7,7 +7,7 @@ import ProjectSec from "../components/ProjectSec.js";
 import "../pages/pagedescript.css"
 export default function AlgoPage() {
   const [user,setUser] = useState({
-  
+    
   })
   useEffect(()=>{
     // console.log(localStorage.getItem('user'))

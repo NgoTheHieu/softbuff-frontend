@@ -25,8 +25,10 @@ import ProjectSec from "./ProjectSec.js";
 import Card2 from "./Card.js";
 ThemedStyleSheet.registerInterface(aphroditeInterface);
 ThemedStyleSheet.registerTheme(DefaultTheme);
+
 export default function AlgoList(props) {
   // const [items, setItems] = useState([]);
+  const QUERYSTR_PREFIX = "q";
   const [minDifficulty, setMinDifficulty] = useState(0);
   const [maxDifficulty, setMaxDifficulty] = useState(10);
   const [isDragging, setIsDragging] = useState(false);
@@ -36,6 +38,11 @@ export default function AlgoList(props) {
   const [pageNum, setPageNum] = useState(1);
   const [maxPageNum, setMaxPageNum] = useState(0);
   const [item, setItem] = useState([]);
+  const history = useHistory();
+  const query = useQuery();
+  const [originalList, setOriginalList] = useState([]);
+
+  const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
   // state={
   //   collapseID: "collapse1"
   // }
@@ -44,18 +51,33 @@ export default function AlgoList(props) {
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
-  const QUERYSTR_PREFIX = "q";
   console.log("Where is question", props.QuestionList);
 
   useEffect(() => {
     getItemList();
-  }, [minDifficulty, maxDifficulty, pageNum]);
+    handleFilterSearch();
+  }, [minDifficulty, maxDifficulty, pageNum, item]);
   const getItemList = async () => {
     const url = `http://localhost:5000/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
     const data = await fetch(url);
     const response = await data.json();
     console.log("AlgoList", response.data.ques);
     setItem(response.data.ques);
+  };
+  const handleFilterSearch = (e) => {
+    let filteredList = item;
+    if (e) {
+      e.preventDefault();
+      history.push(
+        `/question/?${QUERYSTR_PREFIX}=${encodeURIComponent(keyword)}`
+      );
+    }
+    if (keyword) {
+      filteredList = item.filter(
+        (item) => item.title.toLowerCase().includes(keyword.toLowerCase()) //Searching for jobs that actually has the input keyword
+      );
+    }
+    setOriginalList(filteredList);
   };
   const handleChange = (e) => {
     setMinDifficulty(e.values[0]);
@@ -123,7 +145,7 @@ export default function AlgoList(props) {
               <Card>
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    Filtering Data
+                    <h5 className="text-center">Filtering Data</h5>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
@@ -181,11 +203,13 @@ export default function AlgoList(props) {
                           <MDBCol xs={12} md={8}>
                             <MDBRow>
                               <MDBInput
+                                onSubmit={handleFilterSearch}
                                 label="Search for keyword"
                                 color="danger"
                                 onIconClick={() =>
                                   alert("Wait! This is an alert!")
                                 }
+                                onChange={(e) => setKeyword(e.target.value)}
                               />
                             </MDBRow>
                           </MDBCol>
@@ -195,12 +219,10 @@ export default function AlgoList(props) {
                   </Card.Body>
                 </Accordion.Collapse>
               </Card>
-             
             </Accordion>
-            
           </MDBContainer>
         </MDBContainer>
-        {item.map((e) => (
+        {originalList.map((e) => (
           <Question {...e} />
         ))}
       </div>

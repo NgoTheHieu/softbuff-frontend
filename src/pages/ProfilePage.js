@@ -47,11 +47,11 @@ export default function ProfilePage(props) {
   
   return (<>
     <Navbar2 user={user} logout={logout}/>  
-    <div className="bodyimage ">
+    <div className="bodyimage text-center justify-content-center">
     
 
-      <MDBCol md='4'>
-        <MDBCard className="text-center justify-content-center">
+      <MDBCol md='6' ms="6">
+        <MDBCard className="">
           <MDBCardImage
             hover
             overlay='white-light'

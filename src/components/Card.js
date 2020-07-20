@@ -25,9 +25,11 @@ const MediaObjectPage = (props) => {
               </div>
 
               <div>
-  <ul className="benefit-list">Categories:{props.categories}{props.Categories.map(i=>{return <MDBBadge color="success" className="m-1">{i}</MDBBadge>})}</ul>
+  <ul className="benefit-list">Categories:{props.categories}{props.Categories.map(i=>{return <MDBBadge color="success" className="m-1">{i.category}</MDBBadge>})}</ul>
   <ul className="benefit-list">Licensed by:{props.sponsors.map(i=>{return <MDBBadge color="danger" className="m-1">{i}</MDBBadge>})}</ul>
               </div>
+              
+
             </div>
           </Col>
           <Col>
@@ -38,6 +40,7 @@ const MediaObjectPage = (props) => {
             </h5>
               <div className="jobcard-location">{props.author}</div>
             </div>
+            
           </Col>
         </Row>
       </div>

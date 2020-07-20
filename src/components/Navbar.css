@@ -1,7 +1,7 @@
 #videobackground .gradient {
-    background: -moz-linear-gradient(45deg, white , rgba(13, 17, 198, 0.69) 100%);
-    background: -webkit-linear-gradient(45deg, white, rgba(13, 17, 198, 0.69) 100%);
-    background: linear-gradient(45deg, white, rgba(13, 17, 198, 0.69) 100%);
+    background: -moz-linear-gradient(45deg, yellow , transparent 100%);
+    background: -webkit-linear-gradient(45deg, yellow, transparent 100%);
+    background: linear-gradient(45deg, yellow, transparent 100%);
     }
     
     #videobackground .view video {

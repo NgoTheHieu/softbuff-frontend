@@ -5,7 +5,15 @@ import aphroditeInterface from "react-with-styles-interface-aphrodite";
 import DefaultTheme from "rheostat/lib/themes/DefaultTheme";
 import { Accordion, Card, Button } from "react-bootstrap";
 import { Row, Col, Badge } from "react-bootstrap";
+import {
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCardTitle,
+  MDBCardText,
+} from "mdbreact";
 import moment from "moment";
+import CategoryList from "./CategoryList.js";
 import "./QuestionList.css";
 import {
   MDBCol,
@@ -17,6 +25,7 @@ import {
   MDBInput,
   MDBTypography,
   MDBBox,
+  MDBJumbotron,
 } from "mdbreact";
 import PaginationPage from "./Pagination.js";
 import { useHistory, useLocation, Link } from "react-router-dom";
@@ -41,13 +50,34 @@ export default function AlgoList(props) {
   const history = useHistory();
   const query = useQuery();
   const [originalList, setOriginalList] = useState(item);
-
+  const [categoryList, setCategoryList] = useState([]);
+  const [cateKeyword,setCateKeyword] = useState("")
   const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
+
+
   // state={
   //   collapseID: "collapse1"
   // }
 
   // console.log(props.QuestionList.ques);
+  const deleteItem = async (id) => {
+    console.log(id);
+    const url = `http://localhost:5000/ques/${id}`;
+    const data = await fetch(url, {
+      method: "DELETE",
+      header: {
+        "Content-Type": "application/json",
+      },
+    }
+    );
+    
+    getItemList()
+    console.log(data)
+    // const response = await data.json();
+    
+    // console.log(response)
+    // console.log("AlgoList", response.data.ques);
+  };
   function useQuery() {
     return new URLSearchParams(useLocation().search);
   }
@@ -55,15 +85,24 @@ export default function AlgoList(props) {
 
   useEffect(() => {
     getItemList();
-  
+    getCategoryList();
   }, [minDifficulty, maxDifficulty, pageNum]);
   const getItemList = async () => {
     const url = `http://localhost:5000/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
     const data = await fetch(url);
     const response = await data.json();
-    console.log("AlgoList", response.data.ques);
+
     setItem(response.data.ques);
     setOriginalList(response.data.ques);
+    console.log("AlgoList", response );
+  };
+  const getCategoryList = async () => {
+    const url = `http://localhost:5000/ques/categories`;
+    const data = await fetch(url);
+    const response = await data.json();
+    console.log("AlgoList", response.data.ques);
+    setCategoryList(response.data);
+    console.log(response.data)
   };
   const handleFilterSearch = (e) => {
     let filteredList = item;
@@ -76,9 +115,13 @@ export default function AlgoList(props) {
     if (keyword) {
       filteredList = item.filter(
         (item) => item.title.toLowerCase().includes(keyword.toLowerCase()) //Searching for jobs that actually has the input keyword
-      );
+        // (item) => item.Categories.filter( (cat) => cat.category.toLowerCase().includes(keyword.toLowerCase())).length > 0
+        );
     }
     setOriginalList(filteredList);
+  };
+  const handleCateFilterSearch = (e) => {
+
   };
   const handleChange = (e) => {
     setMinDifficulty(e.values[0]);
@@ -131,17 +174,28 @@ export default function AlgoList(props) {
           author={author}
           difficulties={difficulties}
           Categories={Categories}
+          _id={_id}
         />
       </a>
+      {props.user ? (
+        <button
+          type="button"
+          onClick={() => deleteItem(_id)}
+          className="btn btn-danger text-right"
+        >
+          Delete this item
+        </button>
+      ) : null}
       {/* </Link> */}
     </div>
   );
+  console.log(props.user);
   return (
     <div>
       <div className="m-5 ">
         {" "}
-        <MDBContainer className="">
-          <MDBContainer className="bgapp">
+        <MDBContainer className="text-center mt-5">
+          <MDBContainer className="bgapp text-center mt-5">
             <Accordion defaultActiveKey="0">
               <Card>
                 <Card.Header>
@@ -156,6 +210,14 @@ export default function AlgoList(props) {
                       <MDBTypography blockquote bqColor="warning">
                         <MDBBox tag="p" mb={0} className="bq-title">
                           Filtering Data
+                        </MDBBox>
+                      </MDBTypography>
+                      <MDBTypography blockquote bqColor="success">
+                        <MDBBox tag="p" mb={0} className="bq-title">
+                          We have {originalList.length} items after filter
+                        </MDBBox>
+                        <MDBBox tag="p" mb={0} className="bq-title">
+                       {/* {categoryList.map(item=><CategoryList id={categoryList.indexOf(item)}category={item.category}/>)} */}
                         </MDBBox>
                       </MDBTypography>
                       <Row>
@@ -212,7 +274,29 @@ export default function AlgoList(props) {
                                 }
                                 onChange={(e) => setKeyword(e.target.value)}
                               />
-                              <Button onClick={()=>{handleFilterSearch()}}>Search</Button>
+                              <Button
+                                onClick={() => {
+                                  handleFilterSearch();
+                                }}
+                              >
+                                Search
+                              </Button>
+                              <MDBInput
+                                onSubmit={handleCateFilterSearch}
+                                label="Search for Cate"
+                                color="danger"
+                                onIconClick={() =>
+                                  alert("Wait! This is an alert!")
+                                }
+                                onChange={(e) => setCateKeyword(e.target.value)}
+                              />
+                              <Button
+                                onClick={() => {
+                                  handleCateFilterSearch();
+                                }}
+                              >
+                                Search
+                              </Button>
                             </MDBRow>
                           </MDBCol>
                         </Col>
@@ -222,11 +306,38 @@ export default function AlgoList(props) {
                 </Accordion.Collapse>
               </Card>
             </Accordion>
+            <MDBRow>
+              <MDBContainer className="mt-5 text-center">
+                <MDBRow>
+                  <MDBCol>
+                    <MDBJumbotron className="text-center">
+                      <MDBCardBody>
+                        <MDBCardTitle className="indigo-text h1 mb-4">
+                          We have {originalList.length} questions this page{" "}
+                          {"&"} {item.length} in total
+                        </MDBCardTitle>
+                        <MDBCardText>
+                          {originalList.map((e) => (
+                            <Question {...e} />
+                          ))}
+                        </MDBCardText>
+                      </MDBCardBody>
+                    </MDBJumbotron>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </MDBRow>
+            {/* <h1 className="indigo-text">
+                      <strong>
+                        We have {originalList.length} items after filter
+                      </strong>
+                    </h1>
+
+                    {originalList.map((e) => (
+                      <Question {...e} />
+                    ))} */}
           </MDBContainer>
         </MDBContainer>
-        {originalList.map((e) => (
-          <Question {...e} />
-        ))}
       </div>
       <MDBRow className="text-center justify-content-center">
         <PaginationLink disabled={pageNum === 1} handleClick={goPrevPage}>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { Link, Redirect } from "react-router-dom";
-import FacebookLogin from 'react-facebook-login';
-import {Modal} from "react-bootstrap"
+import FacebookLogin from "react-facebook-login";
+import { Modal } from "react-bootstrap";
 import {
   MDBNavbar,
   MDBNavbarBrand,
@@ -23,12 +23,16 @@ import {
   MDBInput,
   MDBFormInline,
   MDBAnimation,
+  MDBPopover,
+  MDBPopoverHeader,
+  MDBPopoverBody,
 } from "mdbreact";
 import "./SignupForm.css";
 
 export default function SignupForm(props) {
   const [collapseID, setCollapseID] = useState("");
-  const [openFacebook,setOpenFacebook] = useState(false)
+  const [openFacebook, setOpenFacebook] = useState(false);
+  const [message, setMessage] = useState("");
   const toggleCollapse = (collapseID) => () =>
     setCollapseID((prevState) => ({
       collapseID: prevState.collapseID !== collapseID ? collapseID : "",
@@ -40,7 +44,7 @@ export default function SignupForm(props) {
       onClick={toggleCollapse("navbarCollapse")}
     />
   );
-
+  
   const handleSubmit = async (e) => {};
   return (
     <div>
@@ -74,9 +78,7 @@ export default function SignupForm(props) {
                   type="fadeInLeft"
                   delay=".3s"
                   className="white-text text-center text-md-left col-md-3 mt-xl-5 mb-5"
-                >
-              
-                </MDBAnimation>
+                ></MDBAnimation>
 
                 <MDBCol md="6" xl="5" className="mb-4">
                   <MDBAnimation type="fadeInRight" delay=".3s">
@@ -117,23 +119,32 @@ export default function SignupForm(props) {
                               color="blue"
                               size="sm"
                               onClick={() => {
-                               setOpenFacebook(true)
+                                setOpenFacebook(true);
                               }}
                             >
-                              <MDBIcon fab icon="facebook-f" /> Facebook
+                              <MDBIcon fab icon="facebook-f" /> Log in with Facebook
                             </MDBBtn>
-
-                            <MDBBtn color="red" size="sm">
-                              <MDBIcon fab icon="google" /> Google
-                            </MDBBtn>
-                            <MDBBtn color="black" size="sm">
-                              <MDBIcon fab icon="github" /> Google
-                            </MDBBtn>
+                            
                           </div>
+                          {props.message?  <MDBPopover
+                              placement="bottom"
+                              popover
+                              clickable
+                              id="popper3"
+                            >
+                             <MDBBtn color="warning">
+                                {props.message || "Looking Good!"}
+                              </MDBBtn>
+                              <div>
+                                <MDBPopoverHeader></MDBPopoverHeader>
+                                <MDBPopoverBody></MDBPopoverBody>
+                              </div>
+                            </MDBPopover>:null}
                         </div>
-                        <Modal show={openFacebook} onHide={() => setOpenFacebook(!openFacebook)}>
-                          <h1>Login with Email</h1>
-
+                        <Modal
+                          show={openFacebook}
+                          onHide={() => setOpenFacebook(!openFacebook)}
+                        >
                           <FacebookLogin
                             appId="671839706705875"
                             autoLoad={true}

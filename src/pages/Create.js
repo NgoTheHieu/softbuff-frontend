@@ -5,7 +5,7 @@ import CreateQuizForm from "../components/CreateQuizForm";
 import AlgoList from "../components/AlgoList";
 import ProjectSec from "../components/ProjectSec.js";
 import Card2 from "../components/Card"
-export default function CreatePage() {
+export default function CreatePage(props) {
   const [] = useState("");
   const [title, setTitle] = useState("");
   const [source, setSource] = useState("");
@@ -15,6 +15,32 @@ export default function CreatePage() {
   const [difficulties, setDifficulties] = useState(0);
   const [author, setAuthor] = useState("");
   const [logo,setLogo] = useState("")
+  const [user, setUser] = useState({});
+
+  const [open, setOpen] = useState(null);
+  const [loaded, setLoaded] = useState(false);
+  console.log(" id ", props);
+  // let User = props.location.state ? props.location.state.user : null;
+  // const logout = () => {
+  //   User = null
+  // }
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
+  const logout = async () => {
+    // const res = await fetch(`https://bamboobackend123.herokuapp.com/auth/logout`, {
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // });
+    // if (res.ok) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setUser(null);
+    // } else {  
+    //   console.log("dont mess with my app");
+    // }
+  };
   const createQues = async (e) => {
     const url = `http://localhost:5000/ques`
     const quesData = {
@@ -64,7 +90,7 @@ export default function CreatePage() {
   };
   return (
     <div>
-      <Navbar2 />
+      <Navbar2 user={user} logout={logout}/>
       <CreateQuizForm
         title={title}
         source={source}

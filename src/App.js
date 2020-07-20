@@ -46,7 +46,7 @@ function App(props) {
         component={(props) => <AlgoPage {...props} />}
       />
       {/* this handle event that switch user to well, .. Jobs page */}
-      <Route path="/dev" exact component={(props)=><DeveloperPage {...props}/>} />
+      <Route path="/roadmap" exact component={(props)=><DeveloperPage {...props}/>} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/signup" exact component={SignupPage} />
       {/* this handle event that switch user to well, .. Jobs page */}

@@ -13,26 +13,28 @@ export default function AlgoPage() {
     // console.log(localStorage.getItem('user'))
     setUser(JSON.parse(localStorage.getItem('user')))
   },[])
+  console.log(user)
   const logout = async () => {
-    const res = await fetch(`http://localhost:5000/auth/logout`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (res.ok) {
+    // const res = await fetch(`https://bamboobackend123.herokuapp.com/auth/logout`, {
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // });
+    // if (res.ok) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
-    } else {
-      console.log("Don't mess with my app");
-    }
+    // } else {  
+    //   console.log("dont mess with my app");
+    // }
   };
+
 
   return (
     <>
     <Navbar user={user} logout={logout}/>
     <div className="bodyimage">
-      <AlgoList  />
+      <AlgoList user={user}  />
     </div>
     <Footer />
     </>

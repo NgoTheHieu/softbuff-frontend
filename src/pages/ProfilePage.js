@@ -5,7 +5,7 @@ import CreateQuizForm from "../components/CreateQuizForm";
 import AlgoList from "../components/AlgoList";
 import FormC from "../components/Error";
 import CardExample from "../components/LandingCard"
-import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon } from 'mdbreact';
+import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon, MDBContainer } from 'mdbreact';
 import {useHistory} from "react-router-dom"
 import "../pages/pagedescript.css"
 export default function ProfilePage(props) {
@@ -49,14 +49,13 @@ export default function ProfilePage(props) {
     <Navbar2 user={user} logout={logout}/>  
     <div className="bodyimage text-center justify-content-center">
     
-
-      <MDBCol md='6' ms="6">
+    <MDBContainer><MDBCol md='8' ms="8">
         <MDBCard className="">
           <MDBCardImage
             hover
             overlay='white-light'
             className='card-img-top'
-            src='https://uwalls.com/img/gallery/93/thumbs/thumb_l_nus_11179.jpg'
+            src={user.image || `https://uwalls.com/img/gallery/93/thumbs/thumb_l_nus_11179.jpg`}
             alt='man'
           />
 
@@ -87,7 +86,8 @@ export default function ProfilePage(props) {
             </MDBCol>
           </MDBCardBody>
         </MDBCard>
-      </MDBCol>
+      </MDBCol></MDBContainer>
+      
     </div>
     </>
   );

@@ -11,7 +11,7 @@ export default function LoginPage(props) {
   const [loaded, setLoaded] = useState(false);
   const [email, setEmail] = useState("cusaniv@gmail.com");
   const [password, setPassword] = useState("");
-
+  const [message,setMessage] = useState(null)
   useEffect(() => {
     fetchUser();
   }, []);
@@ -61,6 +61,7 @@ export default function LoginPage(props) {
       history.push("/", { user });
     } else {
       console.log(res);
+      setMessage("Wrong email or password!")
     }
   };
 
@@ -108,6 +109,7 @@ export default function LoginPage(props) {
         loginWithFacebook={loginWithFacebook}
         setEmail={handleEmailChange}
         setPassword={handlePasswordChange}
+        message={message}
       />
     </div>
   );

@@ -20,6 +20,7 @@ export default function SignupPage() {
   const [isRegistered, setIsRegistered] = useState(false);
   const [userProfile, setUserProfile] = useState(false);
   const [anchorEl, setAnchorEl] = useState("");
+  const [initial,setInitial] = useState(true)
   // const [isUserExist,setIsUserExist] = useState(false)
   // const [signInEmail,setSignInEmail] = useState("")
   // const [] = useState("")

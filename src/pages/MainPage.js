@@ -4,13 +4,24 @@ import Footer from "../components/Footer";
 import CreateQuizForm from "../components/CreateQuizForm";
 import AlgoList from "../components/AlgoList";
 import FormC from "../components/Error";
-import CardExample from "../components/LandingCard"
-import ProductCategories from '../components/OnePirate/modules/views/ProductCategories';
-import "../pages/pagedescript.css"
+import CardExample from "../components/LandingCard";
+import Gallery from "../components/Gallery";
+import ProductCategories from "../components/OnePirate/modules/views/ProductCategories";
+import {
+  MDBCol,
+  MDBBadge,
+  MDBContainer,
+  MDBRow,
+  MDBFooter,
+  MDBIcon,
+  MDBInput,
+  MDBTypography,
+  MDBBox,MDBJumbotron,MDBCardImage,MDBCardBody,MDBCardTitle,MDBCardText
+} from "mdbreact";
+import "../pages/pagedescript.css";
 export default function MainPage(props) {
-  const [user,setUser] = useState({
-  })
-  
+  const [user, setUser] = useState({});
+
   const [open, setOpen] = useState(null);
   const [loaded, setLoaded] = useState(false);
   console.log(" id ", props);
@@ -18,31 +29,70 @@ export default function MainPage(props) {
   // const logout = () => {
   //   User = null
   // }
-  useEffect(()=>{
-    setUser(JSON.parse(localStorage.getItem('user')))
-  },[])
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
   const logout = async () => {
-    const res = await fetch(`http://localhost:5000/auth/logout`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (res.ok) {
+    // const res = await fetch(`https://bamboobackend123.herokuapp.com/auth/logout`, {
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // });
+    // if (res.ok) {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
-    } else {
-      console.log("Don't mess with my app");
-    }
+    // } else {  
+    //   console.log("dont mess with my app");
+    // }
   };
 
-  
-  return (<>
-    <Navbar2 user={user} logout={logout}/>  
-    <div className="bodyimage">
-      <ProductCategories />
-    </div>
-    <Footer />
+  return (
+    <>
+      <Navbar2 user={user} logout={logout} />
+      <div className="bodyimage">
+        <MDBContainer>
+      <MDBRow>
+        <MDBCol>
+          <MDBJumbotron className="text-center">
+            <MDBCardTitle className="card-title h4 pb-2">
+            <MDBCardTitle className="h2">
+               Welcome to the first page of Bamboo
+              </MDBCardTitle>
+              <p className="blue-text my-4 font-weight-bold">
+                Great tree
+              </p>
+              <hr className="my-4" />
+              <MDBCardText>
+              “Notice that the stiffest tree is most easily cracked, while the bamboo or willow survives by bending with the wind.”
+              </MDBCardText>
+              <hr className="my-4" />
+            </MDBCardTitle>
+
+            <Gallery />
+            <MDBCardBody>
+              <MDBCardTitle className="indigo-text h5 m-4">
+              {/* We have {originalList.length} items after filter */}
+              </MDBCardTitle>
+              <MDBCardText>
+              <MDBCardTitle className="card-title h4 pb-2">
+              <hr className="my-4" />
+            <MDBCardTitle className="h2">
+                Contents {"&"} Licensed by:
+              </MDBCardTitle>
+              <hr className="my-4" />
+            </MDBCardTitle>
+        <ProductCategories />
+              </MDBCardText>
+
+
+            </MDBCardBody>
+          </MDBJumbotron>
+        </MDBCol>
+      </MDBRow>
+      </MDBContainer>
+      </div>
+      <Footer />
     </>
   );
 }

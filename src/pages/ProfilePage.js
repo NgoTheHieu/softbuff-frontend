@@ -7,7 +7,7 @@ import FormC from "../components/Error";
 import CardExample from "../components/LandingCard"
 import { MDBBtn, MDBCard, MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBRow, MDBCol, MDBView, MDBIcon, MDBContainer } from 'mdbreact';
 import {useHistory} from "react-router-dom"
-import "../pages/pagedescript.css"
+import "./pagedescript.css"
 export default function ProfilePage(props) {
   const [user,setUser] = useState({
   
@@ -28,25 +28,25 @@ export default function ProfilePage(props) {
   const logout = async () => {
     
     
-    const res = await fetch(`http://localhost:5000/auth/logout`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    });
-    if (res.ok) {
+    // const res = await fetch(`http://localhost:5000/auth/logout`, {
+    //   headers: {
+    //     authorization: `Bearer ${localStorage.getItem("token")}`,
+    //   },
+    // });
+    // if (res.ok) {
       
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       setUser(null);
       history.push("/")
-    } else {
-      console.log("Don't mess with my app");
-    }
+    // } else {
+    //   console.log("Don't mess with my app");
+    // }
   };
 
   
   return (<>
-    <Navbar2 user={user} logout={logout}/>  
+    <Navbar2 user={user} logout={logout} noview={true}/>  
     <div className="bodyimage text-center justify-content-center">
     
     <MDBContainer><MDBCol md='8' ms="8">

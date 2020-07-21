@@ -71,7 +71,7 @@ export default function SignupPage() {
   };
   const addUser = async (username, email, password) => {
     console.log(username, email, password);
-    const url = `http://localhost:5000/user`;
+    const url = `https://bamboobackend123.herokuapp.com/user`;
     let data = {
       name: username,
       email: email,

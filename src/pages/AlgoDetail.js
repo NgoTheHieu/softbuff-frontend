@@ -56,7 +56,7 @@ export default function AlgoDetail(props) {
     // console.log(localStorage.getItem('user'))
   }, []);
   const fetchComment = async ()=>{
-    const url = `http://localhost:5000/ques/${id}/comments`;
+    const url = `https://bamboobackend123.herokuapp.com/ques/${id}/comments`;
     const data = await fetch(url);
     const response = await data.json();
     setCommentList(response.data)
@@ -82,7 +82,7 @@ export default function AlgoDetail(props) {
       console.log("Need to type some words");
       return;
     }
-    const res = await fetch(`http://localhost:5000/ques/${id}/comments`, {
+    const res = await fetch(`https://bamboobackend123.herokuapp.com/ques/${id}/comments`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

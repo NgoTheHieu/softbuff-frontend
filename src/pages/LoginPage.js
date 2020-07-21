@@ -20,7 +20,7 @@ export default function LoginPage(props) {
     if (data && data.accessToken) {
       console.log(data.accessToken);
       const res = await fetch(
-        `http://localhost:5000/auth/login/facebook?token=${data.accessToken}`
+        `https://bamboobackend123.herokuapp.com/auth/login/facebook?token=${data.accessToken}`
       );
       if (res.ok) {
         const dt = await res.json();
@@ -71,7 +71,7 @@ export default function LoginPage(props) {
       setLoaded(true);
       return;
     }
-    const res = await fetch(`http://localhost:5000/users/me`, {
+    const res = await fetch(`https://bamboobackend123.herokuapp.com/users/me`, {
       headers: {
         authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

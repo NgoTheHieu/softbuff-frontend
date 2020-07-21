@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBMedia, MDBIcon, MDBContainer,MDBBadge } from "mdbreact";
+import { MDBMedia, MDBIcon, MDBContainer, MDBBadge } from "mdbreact";
 import { Row, Col, Badge } from "react-bootstrap";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
@@ -17,30 +17,43 @@ const MediaObjectPage = (props) => {
           </Col>
           <Col xs={8}>
             <div className="jobcard-descriptions">
-              <h2 className="jobcard-title">{props.title}</h2>
+              <h2 className="jobcard-title"><a href={props.source}>{props.title}</a></h2>
               <div>
                 {props.description}
-                <div>
-                </div>
+                <div></div>
               </div>
 
               <div>
-  <ul className="benefit-list">Categories:{props.categories}{props.Categories.map(i=>{return <MDBBadge color="success" className="m-1">{i.category}</MDBBadge>})}</ul>
-  <ul className="benefit-list">Licensed by:{props.sponsors.map(i=>{return <MDBBadge color="danger" className="m-1">{i}</MDBBadge>})}</ul>
+                <ul className="benefit-list">
+                  Categories:
+                  {props.Categories.map((i) => {
+                    return (
+                      <MDBBadge color="success" className="m-1">
+                        {i.category}
+                      </MDBBadge>
+                    );
+                  })} 
+                </ul>
+                <ul className="benefit-list">
+                  Licensed by:
+                  {props.sponsors.map((i) => {
+                    return (
+                      <MDBBadge color="danger" className="m-1">
+                        {i}
+                      </MDBBadge>
+                    );
+                  })}
+                </ul>
               </div>
-              
-
             </div>
           </Col>
           <Col>
-           
             <div className="date-location-box">
-            <h5 className="hotjob-label">
-              RATING DIFFICULTIES: {props.difficulties}/10{" "}
-            </h5>
+              <h5 className="hotjob-label">
+                RATING DIFFICULTIES: {props.difficulties}/10{" "}
+              </h5>
               <div className="jobcard-location">{props.author}</div>
             </div>
-            
           </Col>
         </Row>
       </div>

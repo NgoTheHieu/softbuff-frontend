@@ -175,20 +175,60 @@ export default function CreateQuizForm(props) {
                         </Form>
                       </MDBTabPane>
                       <MDBTabPane tabId="3">
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Nihil odit magnam minima, soluta doloribus
-                          reiciendis molestiae placeat unde eos molestias.
-                          Quisquam aperiam, pariatur. Tempora, placeat ratione
-                          porro voluptate odit minima.
-                        </p>
-                        <p>
-                          Lorem ipsum dolor sit amet, consectetur adipisicing
-                          elit. Nihil odit magnam minima, soluta doloribus
-                          reiciendis molestiae placeat unde eos molestias.
-                          Quisquam aperiam, pariatur. Tempora, placeat ratione
-                          porro voluptate odit minima.
-                        </p>
+                      <Form onSubmit={props.createQues}>
+                          <Form.Row>
+                            <Form.Group as={Col} controlId="formGridEmail">
+                              <Form.Label>Questions Title</Form.Label>
+                              <Form.Control
+                                type="email"
+                                placeholder="_id"
+                                onChange={(e) => props.setTitle(e)}
+                              />
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows="9"
+                              onChange={(e) => props.setDescription(e)}
+                            />
+                          </Form.Group>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={() => {
+                              props.createQues();
+                            }}
+                          >
+                            Submit
+                          </Button>
+                        </Form>
+                      </MDBTabPane>
+                      <MDBTabPane tabId="2">
+                        <Form onSubmit={props.createQues}>
+                          <Form.Row>
+                            <Form.Group as={Col} controlId="formGridEmail">
+                              <Form.Label>Questions Title</Form.Label>
+                              <Form.Control
+                                type="email"
+                                placeholder="ID"
+                                onChange={(e) => props.setTitle(e)}
+                              />
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={() => {
+                              props.createQues();
+                            }}
+                          >
+                            Submit
+                          </Button>
+                        </Form>
                       </MDBTabPane>
                       <MDBTabPane tabId="4">
                         <Form onSubmit={props.createQues}>

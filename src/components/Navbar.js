@@ -74,14 +74,6 @@ class Navbar2 extends React.Component {
                       </MDBBtn>
                     </MDBNavLink>
                   </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBNavLink to="/roadmap">
-                      {" "}
-                      <MDBBtn color="green" size="sm">
-                        RoadMap
-                      </MDBBtn>
-                    </MDBNavLink>
-                  </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
@@ -143,7 +135,7 @@ class Navbar2 extends React.Component {
           {this.state.collapseID && overlay}
         </div>
         {/* </Router> */}
-        <MDBView>
+        {this.props.noview?null:<MDBView>
           <video
             className="video-intro"
             poster=""
@@ -166,7 +158,7 @@ class Navbar2 extends React.Component {
               </MDBRow>
             </MDBContainer>
           </MDBMask>
-        </MDBView>
+        </MDBView>}
       </div>
     );
   }

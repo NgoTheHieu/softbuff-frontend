@@ -57,11 +57,8 @@ export default function MainPage(props) {
           <MDBJumbotron className="text-center">
             <MDBCardTitle className="card-title h4 pb-2">
             <MDBCardTitle className="h2">
-               Welcome to the first page of Bamboo
+               Bamboo
               </MDBCardTitle>
-              <p className="blue-text my-4 font-weight-bold">
-                Great tree
-              </p>
               <hr className="my-4" />
               <MDBCardText>
               “Notice that the stiffest tree is most easily cracked, while the bamboo or willow survives by bending with the wind.”

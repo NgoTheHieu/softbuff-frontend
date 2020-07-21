@@ -8,7 +8,7 @@ import Link from '@material-ui/core/Link';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary">
-      {'To My '}
+      {'Made by Ngo The Hieu '}
       <Link color="inherit" href="https://github.com/NgoTheHieu">
         Github
       </Link>{' '}

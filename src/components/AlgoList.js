@@ -51,9 +51,8 @@ export default function AlgoList(props) {
   const query = useQuery();
   const [originalList, setOriginalList] = useState(item);
   const [categoryList, setCategoryList] = useState([]);
-  const [cateKeyword,setCateKeyword] = useState("")
+  const [cateKeyword, setCateKeyword] = useState("");
   const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
-
 
   // state={
   //   collapseID: "collapse1"
@@ -68,13 +67,12 @@ export default function AlgoList(props) {
       header: {
         "Content-Type": "application/json",
       },
-    }
-    );
-    
-    getItemList()
-    console.log(data)
+    });
+
+    getItemList();
+    console.log(data);
     // const response = await data.json();
-    
+
     // console.log(response)
     // console.log("AlgoList", response.data.ques);
   };
@@ -94,7 +92,7 @@ export default function AlgoList(props) {
 
     setItem(response.data.ques);
     setOriginalList(response.data.ques);
-    console.log("AlgoList", response );
+    console.log("AlgoList", response);
   };
   const getCategoryList = async () => {
     const url = `http://localhost:5000/ques/categories`;
@@ -102,27 +100,34 @@ export default function AlgoList(props) {
     const response = await data.json();
     console.log("AlgoList", response.data.ques);
     setCategoryList(response.data);
-    console.log(response.data)
+    console.log(response.data);
   };
   const handleFilterSearch = (e) => {
     let filteredList = item;
+    let filteredCateList = item;
     if (e) {
       e.preventDefault();
       history.push(
         `/question/?${QUERYSTR_PREFIX}=${encodeURIComponent(keyword)}`
       );
     }
+    let joinList = [];
     if (keyword) {
       filteredList = item.filter(
         (item) => item.title.toLowerCase().includes(keyword.toLowerCase()) //Searching for jobs that actually has the input keyword
         // (item) => item.Categories.filter( (cat) => cat.category.toLowerCase().includes(keyword.toLowerCase())).length > 0
-        );
+      );
+      filteredCateList = item.filter(
+        (item) =>
+          item.Categories.filter((cat) =>
+            cat.category.toLowerCase().includes(keyword.toLowerCase())
+          ).length > 0
+      );
+      joinList = filteredList.concat(filteredCateList);
     }
-    setOriginalList(filteredList);
+    setOriginalList(joinList);
   };
-  const handleCateFilterSearch = (e) => {
-
-  };
+  const handleCateFilterSearch = (e) => {};
   const handleChange = (e) => {
     setMinDifficulty(e.values[0]);
     setMaxDifficulty(e.values[1]);
@@ -163,8 +168,8 @@ export default function AlgoList(props) {
     _id,
   }) => (
     <div>
-      {/* <Link to={`question/${_id}`}> */}
-      <a href={`${source}`}>
+      <Link to={`question/${_id}`}>
+      {/* <a href={`${source}`}> */}
         <Card2
           title={title}
           description={description}
@@ -176,7 +181,9 @@ export default function AlgoList(props) {
           Categories={Categories}
           _id={_id}
         />
-      </a>
+        
+      </Link>
+      {/* </a> */}
       {props.user ? (
         <button
           type="button"
@@ -186,7 +193,6 @@ export default function AlgoList(props) {
           Delete this item
         </button>
       ) : null}
-      {/* </Link> */}
     </div>
   );
   console.log(props.user);
@@ -200,7 +206,7 @@ export default function AlgoList(props) {
               <Card>
                 <Card.Header>
                   <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                    <h5 className="text-center">Filtering Data</h5>
+                    <h5 className="text-center">Filtering Table</h5>
                   </Accordion.Toggle>
                 </Card.Header>
                 <Accordion.Collapse eventKey="0">
@@ -209,15 +215,20 @@ export default function AlgoList(props) {
                     <div className="job-content m-1">
                       <MDBTypography blockquote bqColor="warning">
                         <MDBBox tag="p" mb={0} className="bq-title">
-                          Filtering Data
+                          Filtering Table
                         </MDBBox>
                       </MDBTypography>
                       <MDBTypography blockquote bqColor="success">
                         <MDBBox tag="p" mb={0} className="bq-title">
-                          We have {originalList.length} items after filter
+                          
+                        We have {originalList.length} questions this page{" "}
+                          {"&"} {item.length} in total
                         </MDBBox>
                         <MDBBox tag="p" mb={0} className="bq-title">
-                       {/* {categoryList.map(item=><CategoryList id={categoryList.indexOf(item)}category={item.category}/>)} */}
+                          Category List:
+                          {categoryList.map((item) => 
+                            <MDBBadge className="m-2">{item.category}</MDBBadge>
+                          )}
                         </MDBBox>
                       </MDBTypography>
                       <Row>
@@ -281,22 +292,6 @@ export default function AlgoList(props) {
                               >
                                 Search
                               </Button>
-                              <MDBInput
-                                onSubmit={handleCateFilterSearch}
-                                label="Search for Cate"
-                                color="danger"
-                                onIconClick={() =>
-                                  alert("Wait! This is an alert!")
-                                }
-                                onChange={(e) => setCateKeyword(e.target.value)}
-                              />
-                              <Button
-                                onClick={() => {
-                                  handleCateFilterSearch();
-                                }}
-                              >
-                                Search
-                              </Button>
                             </MDBRow>
                           </MDBCol>
                         </Col>
@@ -313,8 +308,6 @@ export default function AlgoList(props) {
                     <MDBJumbotron className="text-center">
                       <MDBCardBody>
                         <MDBCardTitle className="indigo-text h1 mb-4">
-                          We have {originalList.length} questions this page{" "}
-                          {"&"} {item.length} in total
                         </MDBCardTitle>
                         <MDBCardText>
                           {originalList.map((e) => (

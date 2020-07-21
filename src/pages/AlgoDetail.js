@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import CreateQuizForm from "../components/CreateQuizForm";
@@ -112,7 +112,7 @@ export default function AlgoDetail(props) {
   };
   return (
     <div>
-      <Navbar noview={true} />
+      <Navbar noview={true} user={user} />
       <div className="bodyimage">
         <MDBContainer>
           <MDBRow>

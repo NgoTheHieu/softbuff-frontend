@@ -101,7 +101,7 @@ function ProductCategories(props) {
     },
     {
       url:
-        "https://lh3.googleusercontent.com/proxy/UYOkfxn0bmjEottheqM-AwdSFRpH8hlpizLEcaw1MAjOfeRXXVfrIgrsf-RcOCTMaoe5Qv8FAM4rZjDXjbOrOzeoeCjJLagLWkM7KDsSV4InZzil4--9bq0",
+        "https://lh3.googleusercontent.com/proxy/aYqgSA1b8aiYrF85snZTwojrfvO2Ux8WT1CgLEoQAZ01cznfQvYyI2GvOevNPN324l0ZHiX7kyB3dZvfLWIR0EYVdT0c742KDzgFH_hqE6wRDcjch3TbF7k",
 
       width: "40%",
     },

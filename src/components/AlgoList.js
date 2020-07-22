@@ -61,7 +61,7 @@ export default function AlgoList(props) {
   // console.log(props.QuestionList.ques);
   const deleteItem = async (id) => {
     console.log(id);
-    const url = `http://localhost:5000/ques/${id}`;
+    const url = `https://bamboobackend123.herokuapp.com/ques/${id}`;
     const data = await fetch(url, {
       method: "DELETE",
       header: {

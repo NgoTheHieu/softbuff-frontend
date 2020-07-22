@@ -27,7 +27,7 @@ export default function SignupPage() {
   useEffect(() => {}, []);
   const history = useHistory()
   const getAllUser = async () => {
-    let url = "http://localhost:5000/user";
+    let url = "https://bamboobackend123.herokuapp.com/user";
     let response = await fetch(url);
     let data = await response.json();
 

@@ -42,7 +42,7 @@ export default function LoginPage(props) {
       console.log("Need email and password");
       return;
     }
-    const res = await fetch("http://localhost:5000/auth/login", {
+    const res = await fetch("https://bamboobackend123.herokuapp.com/auth/login", {
       method: "POST",
       headers: {
         "content-type": "application/json",

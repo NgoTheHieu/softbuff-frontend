@@ -86,7 +86,7 @@ export default function AlgoList(props) {
     getCategoryList();
   }, [minDifficulty, maxDifficulty, pageNum]);
   const getItemList = async () => {
-    const url = `http://localhost:5000/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
+    const url = `https://bamboobackend123.herokuapp.com/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
     const data = await fetch(url);
     const response = await data.json();
 
@@ -95,7 +95,7 @@ export default function AlgoList(props) {
     console.log("AlgoList", response);
   };
   const getCategoryList = async () => {
-    const url = `http://localhost:5000/ques/categories`;
+    const url = `https://bamboobackend123.herokuapp.com/ques/categories`;
     const data = await fetch(url);
     const response = await data.json();
     console.log("AlgoList", response.data.ques);
@@ -222,7 +222,7 @@ export default function AlgoList(props) {
                         <MDBBox tag="p" mb={0} className="bq-title">
                           
                         We have {originalList.length} questions this page{" "}
-                          {"&"} {item.length} in total
+                          {"&"}  in total
                         </MDBBox>
                         <MDBBox tag="p" mb={0} className="bq-title">
                           Category List:

@@ -37,7 +37,7 @@ export default function AlgoDetail(props) {
   const [comment,setComment] = useState("")
   console.log(comment)
   const fetchData = async () => {
-    const url = `http://localhost:5000/ques/${id}`;
+    const url = `https://bamboobackend123.herokuapp.com/ques/${id}`;
     const data = await fetch(url);
     const response = await data.json();
     console.log(response);

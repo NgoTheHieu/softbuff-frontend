@@ -340,9 +340,10 @@ export default function AlgoList(props) {
           disabled={pageNum === maxPageNum}
           handleClick={goNextPage}
         >
-          Next Page
+          Next Page 
         </PaginationLink>
       </MDBRow>
     </div>
+    //sfdsfdsf
   );
 }

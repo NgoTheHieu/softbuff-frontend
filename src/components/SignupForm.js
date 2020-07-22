@@ -68,13 +68,16 @@ export default function SignupForm(props) {
           <MDBNavbar dark expand="md" fixed="top">
             <MDBContainer>
               <MDBNavbarBrand>
-                <strong className="white-text">Bamboo</strong>
+                <strong className="white-text"></strong>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={toggleCollapse("navbarCollapse")} />
               <MDBCollapse id="navbarCollapse" isOpen={collapseID} navbar>
                 <MDBNavbarNav left>
                   <MDBNavItem active>
                     <MDBNavLink to="/">Home</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem active>
+                    <MDBNavLink to="/login">Login</MDBNavLink>
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>

@@ -51,17 +51,24 @@ export default function SignupForm(props) {
       <div id="classicformpage">
         {/* <Router> */}
         <div>
-          <MDBNavbar dark expand="md" fixed="top">
+        <MDBNavbar dark expand="md" fixed="top">
             <MDBContainer>
               <MDBNavbarBrand>
-                <MDBBtn outline color="success">
-                  BambooSoft
-                </MDBBtn>
+                <strong className="white-text"></strong>
               </MDBNavbarBrand>
               <MDBNavbarToggler onClick={toggleCollapse("navbarCollapse")} />
               <MDBCollapse id="navbarCollapse" isOpen={collapseID} navbar>
+                <MDBNavbarNav left>
+                  <MDBNavItem active>
+                    <MDBNavLink to="/">Home</MDBNavLink>
+                  </MDBNavItem>
+                  <MDBNavItem active>
+                    <MDBNavLink to="/signup">Signup</MDBNavLink>
+                  </MDBNavItem>
+                </MDBNavbarNav>
                 <MDBNavbarNav right>
-                  <MDBNavItem></MDBNavItem>
+                  <MDBNavItem>
+                  </MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBContainer>

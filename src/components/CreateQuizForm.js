@@ -238,7 +238,7 @@ export default function CreateQuizForm(props) {
                               <Form.Control
                                 type="email"
                                 placeholder="Interview Questions etc..."
-                                onChange={(e) => props.setTitle(e)}
+                                onChange={(e) => props.setDescription(e)}
                               />
                             </Form.Group>
                           </Form.Row>

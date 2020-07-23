@@ -67,9 +67,11 @@ export default function AlgoList(props) {
       header: {
         "Content-Type": "application/json",
       },
+      
     });
-
+    
     getItemList();
+    alert("Deleted")
     console.log(data);
     // const response = await data.json();
 

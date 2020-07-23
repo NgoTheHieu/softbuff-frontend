@@ -44,7 +44,7 @@ export default function CreatePage(props) {
   const createQues = async (e) => {
     const url = `https://bamboobackend123.herokuapp.com/ques`
     const quesData = {
-      title,description,source,Categories,sponsors,difficulties,author,logo
+      title,description,source,Categories,sponsors,difficulties,logo
     };
 
     const newQues = await fetch(url, {

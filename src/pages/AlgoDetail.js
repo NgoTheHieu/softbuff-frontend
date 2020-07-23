@@ -135,7 +135,7 @@ export default function AlgoDetail(props) {
               </MDBJumbotron>
               
               <MDBJumbotron className="">
-              {commentList && commentList.map(item=><CommentBox body={item.body} createdAt={item.createdAt} updatedAt={item.updatedAt} />)}
+              {commentList && commentList.map(item=><CommentBox body={item.body} createdAt={item.createdAt} logo={item.user.logo} updatedAt={item.updatedAt} username={item.user.name} />)}
               </MDBJumbotron>
               <MDBJumbotron className="text-right">
               <MDBInput type="textarea" onChange={(e)=>{setComment(e.target.value)}}label="Add comment here" outline />

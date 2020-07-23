@@ -4,13 +4,14 @@ import ThemedStyleSheet from "react-with-styles/lib/ThemedStyleSheet";
 import aphroditeInterface from "react-with-styles-interface-aphrodite";
 import DefaultTheme from "rheostat/lib/themes/DefaultTheme";
 import { Accordion, Card, Button } from "react-bootstrap";
+import { Pagination } from "react-bootstrap";
 import { Row, Col, Badge } from "react-bootstrap";
 import {
   MDBCard,
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBCardText,
+  MDBCardText,MDBBtn
 } from "mdbreact";
 import moment from "moment";
 import CategoryList from "./CategoryList.js";
@@ -53,7 +54,7 @@ export default function AlgoList(props) {
   const [categoryList, setCategoryList] = useState([]);
   const [cateKeyword, setCateKeyword] = useState("");
   const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
-
+  const [limit, setLimit] = useState(0);
   // state={
   //   collapseID: "collapse1"
   // }
@@ -67,11 +68,10 @@ export default function AlgoList(props) {
       header: {
         "Content-Type": "application/json",
       },
-      
     });
-    
+
     getItemList();
-    alert("Deleted")
+    alert("Deleted");
     console.log(data);
     // const response = await data.json();
 
@@ -91,7 +91,7 @@ export default function AlgoList(props) {
     const url = `https://bamboobackend123.herokuapp.com/ques?minDiff=${minDifficulty}&maxDiff=${maxDifficulty}&page=${pageNum}`;
     const data = await fetch(url);
     const response = await data.json();
-
+    setLimit(response.data.limit);
     setItem(response.data.ques);
     setOriginalList(response.data.ques);
     console.log("AlgoList", response);
@@ -171,7 +171,7 @@ export default function AlgoList(props) {
   }) => (
     <div>
       <Link to={`question/${_id}`}>
-      {/* <a href={`${source}`}> */}
+        {/* <a href={`${source}`}> */}
         <Card2
           title={title}
           description={description}
@@ -183,7 +183,6 @@ export default function AlgoList(props) {
           Categories={Categories}
           _id={_id}
         />
-        
       </Link>
       {/* </a> */}
       {props.user ? (
@@ -222,15 +221,14 @@ export default function AlgoList(props) {
                       </MDBTypography>
                       <MDBTypography blockquote bqColor="success">
                         <MDBBox tag="p" mb={0} className="bq-title">
-                          
-                        We have {originalList.length} questions this page{" "}
-                          {"&"}  in total
+                          We have {originalList.length} questions this page{" "}
+                          {"&"} in total
                         </MDBBox>
                         <MDBBox tag="p" mb={0} className="bq-title">
                           Category List:
-                          {categoryList.map((item) => 
+                          {categoryList.map((item) => (
                             <MDBBadge className="m-2">{item.category}</MDBBadge>
-                          )}
+                          ))}
                         </MDBBox>
                       </MDBTypography>
                       <Row>
@@ -309,8 +307,7 @@ export default function AlgoList(props) {
                   <MDBCol>
                     <MDBJumbotron className="text-center">
                       <MDBCardBody>
-                        <MDBCardTitle className="indigo-text h1 mb-4">
-                        </MDBCardTitle>
+                        <MDBCardTitle className="indigo-text h1 mb-4"></MDBCardTitle>
                         <MDBCardText>
                           {originalList.map((e) => (
                             <Question {...e} />
@@ -338,11 +335,33 @@ export default function AlgoList(props) {
         <PaginationLink disabled={pageNum === 1} handleClick={goPrevPage}>
           Prev Page
         </PaginationLink>
+        <Button
+          onClick={() => {
+            setPageNum(1);
+          }}
+        >
+          1
+        </Button>
+        <Button
+          onClick={() => {
+            setPageNum(2);
+          }}
+        >
+          2
+        </Button>
+        <Button
+        color="transparent"
+          onClick={() => {
+            setPageNum(3);
+          }}
+        >
+          3
+        </Button>
         <PaginationLink
           disabled={pageNum === maxPageNum}
           handleClick={goNextPage}
         >
-          Next Page 
+          Next Page
         </PaginationLink>
       </MDBRow>
     </div>

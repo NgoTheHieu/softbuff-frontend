@@ -16,7 +16,7 @@ export default function CreatePage(props) {
   const [author, setAuthor] = useState("");
   const [logo,setLogo] = useState("")
   const [user, setUser] = useState({});
-
+  
   const [open, setOpen] = useState(null);
   const [loaded, setLoaded] = useState(false);
   console.log(" id ", props);

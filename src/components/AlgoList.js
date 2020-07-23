@@ -107,6 +107,7 @@ export default function AlgoList(props) {
   const handleFilterSearch = (e) => {
     let filteredList = item;
     let filteredCateList = item;
+    let filteredSponsorList = item;
     if (e) {
       e.preventDefault();
       history.push(
@@ -125,7 +126,13 @@ export default function AlgoList(props) {
             cat.category.toLowerCase().includes(keyword.toLowerCase())
           ).length > 0
       );
-      joinList = filteredList.concat(filteredCateList);
+      filteredSponsorList = item.filter(
+        (item) =>
+          item.sponsors.filter((sponsor) =>
+            sponsor.toLowerCase().includes(keyword.toLowerCase())
+          ).length > 0
+      );
+      joinList = filteredList.concat(filteredCateList).concat(filteredSponsorList);
     }
     setOriginalList(joinList);
   };

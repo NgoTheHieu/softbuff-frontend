@@ -6,9 +6,7 @@ import AlgoList from "../components/AlgoList";
 import ProjectSec from "../components/ProjectSec.js";
 import "../pages/pagedescript.css"
 export default function DeveloperPage() {
-  const [user,setUser] = useState({
-    
-  })
+  const [user,setUser] = useState({"username":"Annonymous","email":"annonymous@gmail.com"})
   useEffect(()=>{
     // console.log(localStorage.getItem('user'))
     setUser(JSON.parse(localStorage.getItem('user')))

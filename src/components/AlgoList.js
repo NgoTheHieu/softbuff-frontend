@@ -192,7 +192,7 @@ export default function AlgoList(props) {
         />
       </Link>
       {/* </a> */}
-      {props.user ? (
+      {props.user.type === "host" ? (
         <button
           type="button"
           onClick={() => deleteItem(_id)}

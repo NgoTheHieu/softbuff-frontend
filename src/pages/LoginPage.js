@@ -31,7 +31,7 @@ export default function LoginPage(props) {
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         // history.goBack();
-        history.push("", { user });
+        history.push("/", { user });
       } else {
         console.log(res);
       }

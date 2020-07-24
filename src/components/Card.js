@@ -17,7 +17,9 @@ const MediaObjectPage = (props) => {
           </Col>
           <Col xs={8}>
             <div className="jobcard-descriptions">
-              <h2 className="jobcard-title"><a href={props.source}>{props.title}</a></h2>
+              <h2 className="jobcard-title">
+                <a href={props.source}>{props.title}</a>
+              </h2>
               <div>
                 {props.description}
                 <div></div>
@@ -32,7 +34,7 @@ const MediaObjectPage = (props) => {
                         {i.category}
                       </MDBBadge>
                     );
-                  })} 
+                  })}
                 </ul>
                 <ul className="benefit-list">
                   Licensed by:

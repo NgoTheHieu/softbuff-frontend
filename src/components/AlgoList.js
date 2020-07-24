@@ -11,7 +11,8 @@ import {
   MDBCardBody,
   MDBCardImage,
   MDBCardTitle,
-  MDBCardText,MDBBtn
+  MDBCardText,
+  MDBBtn,
 } from "mdbreact";
 import moment from "moment";
 import CategoryList from "./CategoryList.js";
@@ -132,7 +133,9 @@ export default function AlgoList(props) {
             sponsor.toLowerCase().includes(keyword.toLowerCase())
           ).length > 0
       );
-      joinList = filteredList.concat(filteredCateList).concat(filteredSponsorList);
+      joinList = filteredList
+        .concat(filteredCateList)
+        .concat(filteredSponsorList);
     }
     setOriginalList(joinList);
   };
@@ -357,7 +360,7 @@ export default function AlgoList(props) {
           2
         </Button>
         <Button
-        color="transparent"
+          color="transparent"
           onClick={() => {
             setPageNum(3);
           }}

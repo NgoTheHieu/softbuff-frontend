@@ -101,7 +101,7 @@ function ProductCategories(props) {
     },
     {
       url:
-        "https://lh3.googleusercontent.com/proxy/aYqgSA1b8aiYrF85snZTwojrfvO2Ux8WT1CgLEoQAZ01cznfQvYyI2GvOevNPN324l0ZHiX7kyB3dZvfLWIR0EYVdT0c742KDzgFH_hqE6wRDcjch3TbF7k",
+        "https://dilaratetik.com/wp-content/uploads/2016/03/three-powerful-life-lessons-chinese-bamboo-story.jpg",
 
       width: "40%",
     },

@@ -54,7 +54,10 @@ export default function CreatePage(props) {
       },
       body: JSON.stringify(quesData),
     });
+    if(newQues.ok){
+      
     alert("Question created");
+    }
   };
   const handleTitleChange = (e) => {
     setTitle(e.target.value);

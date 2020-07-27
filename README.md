@@ -1,9 +1,15 @@
 ## Bamboo App
+
 ## Introduction
 
 ## Table of Content
 
-## User Requirement
+## User Stories:
+
+User can login with Email and create a new Username
+User can login with Facebook
+User can view a list of questions
+User can signup for a new account 
 
 ## Installation
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

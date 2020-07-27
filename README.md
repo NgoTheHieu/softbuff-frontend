@@ -2,6 +2,8 @@
 
 ## Introduction
 
+Application that allows user to authenticate through Email, Facebook, Google, Github.
+
 ## Table of Content
 
 ## User Stories:

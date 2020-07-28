@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function DeveloperDetail() {
+export default function WebScraping() {
     return (
         <div>
             

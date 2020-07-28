@@ -27,11 +27,16 @@ import {
   MDBPopoverHeader,
   MDBPopoverBody,
 } from "mdbreact";
+import GitHubLogin from "react-github-login";
 import "./SignupForm.css";
 
 export default function SignupForm(props) {
   const [collapseID, setCollapseID] = useState("");
   const [openFacebook, setOpenFacebook] = useState(false);
+  const [openGithub, setOpenGithub] = useState(false);
+  const [openGoogle, setOpenGoogle] = useState(false);
+  const [openLinkedin, setOpenLinkedin] = useState(false);
+  const [openMedium, setOpenMedium] = useState(false);
   const [message, setMessage] = useState("");
   const toggleCollapse = (collapseID) => () =>
     setCollapseID((prevState) => ({
@@ -44,14 +49,14 @@ export default function SignupForm(props) {
       onClick={toggleCollapse("navbarCollapse")}
     />
   );
-  
+
   const handleSubmit = async (e) => {};
   return (
     <div>
       <div id="classicformpage">
         {/* <Router> */}
         <div>
-        <MDBNavbar dark expand="md" fixed="top">
+          <MDBNavbar dark expand="md" fixed="top">
             <MDBContainer>
               <MDBNavbarBrand>
                 <strong className="white-text"></strong>
@@ -67,8 +72,7 @@ export default function SignupForm(props) {
                   </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
-                  <MDBNavItem>
-                  </MDBNavItem>
+                  <MDBNavItem></MDBNavItem>
                 </MDBNavbarNav>
               </MDBCollapse>
             </MDBContainer>
@@ -122,31 +126,77 @@ export default function SignupForm(props) {
                           </MDBBtn>
                           <hr className="hr-light" />
                           <div className="text-center d-flex justify-content-center white-label">
-                            <MDBBtn
-                              color="blue"
-                              size="sm"
-                              onClick={() => {
-                                setOpenFacebook(true);
-                              }}
-                            >
-                              <MDBIcon fab icon="facebook-f" /> Log in with Facebook
-                            </MDBBtn>
-                            
+                            <MDBCol>
+                              <MDBBtn
+                                className="btn-lg btn-block"
+                                color="blue"
+                                size="sm"
+                                onClick={() => {
+                                  setOpenFacebook(true);
+                                }}
+                              >
+                                <MDBIcon fab icon="facebook-f" /> Log in with
+                                Facebook
+                              </MDBBtn>
+                              <MDBBtn
+                                className="btn-lg btn-block"
+                                color="red"
+                                size="sm"
+                                onClick={() => {
+                                  setOpenFacebook(true);
+                                }}
+                              >
+                                <MDBIcon fab icon="google" /> Log in with Google
+                              </MDBBtn>
+                              <MDBBtn
+                                className="btn-lg btn-block"
+                                color="black"
+                                size="sm"
+                                onClick={() => {
+                                  setOpenGoogle(true);
+                                }}
+                              >
+                                <MDBIcon fab icon="github" /> Log in with Github
+                              </MDBBtn>
+                              <MDBBtn
+                                className="btn-lg btn-block "
+                                size="sm"
+                                onClick={() => {
+                                  console.log("Run")
+                                  setOpenGithub(true);
+                                }}
+                              >
+                                <MDBIcon fab icon="linkedin" /> Log in with
+                                Linkedin
+                              </MDBBtn>
+                              <MDBBtn
+                                className="btn-lg btn-block "
+                                color="dark"
+                                size="sm"
+                                onClick={() => {
+                                  setOpenLinkedin(true);
+                                }}
+                              >
+                                <MDBIcon fab icon="medium" /> Log in with Medium
+                              </MDBBtn>
+                            </MDBCol>
                           </div>
-                          {props.message?  <MDBPopover
+                          {props.message ? (
+                            <MDBPopover
                               placement="bottom"
                               popover
                               clickable
                               id="popper3"
                             >
-                             <MDBBtn color="warning">
+                              <MDBBtn color="warning">
                                 {props.message || "Looking Good!"}
                               </MDBBtn>
                               <div>
                                 <MDBPopoverHeader></MDBPopoverHeader>
                                 <MDBPopoverBody></MDBPopoverBody>
                               </div>
-                            </MDBPopover>:null}
+                            </MDBPopover>
+                          ) : null}
                         </div>
                         <Modal
                           show={openFacebook}
@@ -157,6 +207,20 @@ export default function SignupForm(props) {
                             autoLoad={true}
                             fields="name,email,picture"
                             callback={props.loginWithFacebook}
+                          />
+                        </Modal>
+                        <Modal
+                          show={openGithub}
+                          onHide={() => setOpenGithub(!openGithub)}
+                        >
+                          {" "}
+                          <GitHubLogin
+                            clientId="70bcb4de4999506e19c0"
+                            redirectUri="http://localhost:3000/login/github/authorized"
+                            // onSuccess={props.loginWithFacebook}
+                            onSuccess={data=>{props.loginWithGithub(data)}}
+                            onFailure={data=>{console.log(data)}}
+                          
                           />
                         </Modal>
                       </MDBCardBody>
@@ -170,8 +234,7 @@ export default function SignupForm(props) {
 
         <MDBContainer>
           <MDBRow className="py-5">
-            <MDBCol md="12" className="text-center">
-            </MDBCol>
+            <MDBCol md="12" className="text-center"></MDBCol>
           </MDBRow>
         </MDBContainer>
       </div>

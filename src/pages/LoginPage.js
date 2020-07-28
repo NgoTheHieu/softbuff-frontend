@@ -37,6 +37,17 @@ export default function LoginPage(props) {
       }
     }
   };
+  const loginWithGithub = async (data) => {
+    if(data){
+      console.log(data.code)
+      
+    }
+    const res = await fetch(`http://localhost:5000/auth/login/github?token=${data.code}`)
+    if(res.ok){
+      const dt = await res.json()
+      console.log(dt)
+    }
+  }
   const loginWithEmail = async (email, pw) => {
     if (!email || !pw) {
       console.log("Need email and password");
@@ -109,6 +120,7 @@ export default function LoginPage(props) {
         loginWithFacebook={loginWithFacebook}
         setEmail={handleEmailChange}
         setPassword={handlePasswordChange}
+        loginWithGithub={loginWithGithub}
         message={message}
       />
     </div>

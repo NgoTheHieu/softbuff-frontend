@@ -20,6 +20,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
 } from "mdbreact";
+import {DropdownButton,ButtonGroup,Dropdown} from "react-bootstrap"
 import "./Navbar.css";
 import NavbarSearch from "./NavbarSearch";
 import ProjectSec from "./ProjectSec.js";
@@ -84,7 +85,24 @@ class Navbar2 extends React.Component {
                     </MDBNavLink>
                     
                   </MDBNavItem>
-                  
+                  <MDBNavItem>
+                  <DropdownButton
+        as={ButtonGroup}
+        key={`success`}
+        id={`dropdown-variants-success`}
+        variant={`success`.toLowerCase()}
+        title={`API`}
+      >
+        <Dropdown.Item eventKey="1">WebScraping </Dropdown.Item>
+        <Dropdown.Item eventKey="2">Contact</Dropdown.Item>
+        <Dropdown.Item eventKey="3" active>
+          Active Item
+        </Dropdown.Item>
+        <Dropdown.Divider />
+        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
+      </DropdownButton>
+      </MDBNavItem>
+      
                   {this.props.user ? <MDBNavItem>
                     <MDBNavLink to="/create">
                       <MDBBtn color="green" size="sm">
@@ -159,6 +177,7 @@ class Navbar2 extends React.Component {
             </MDBContainer>
           </MDBMask>
         </MDBView>}
+        
       </div>
     );
   }

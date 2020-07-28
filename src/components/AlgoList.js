@@ -4,20 +4,15 @@ import ThemedStyleSheet from "react-with-styles/lib/ThemedStyleSheet";
 import aphroditeInterface from "react-with-styles-interface-aphrodite";
 import DefaultTheme from "rheostat/lib/themes/DefaultTheme";
 import { Accordion, Card, Button } from "react-bootstrap";
-import { Pagination } from "react-bootstrap";
-import { Row, Col, Badge } from "react-bootstrap";
+
+import { Row, Col ,Form} from "react-bootstrap";
+
+import "./QuestionList.css";
 import {
-  MDBCard,
   MDBCardBody,
-  MDBCardImage,
   MDBCardTitle,
   MDBCardText,
   MDBBtn,
-} from "mdbreact";
-import moment from "moment";
-import CategoryList from "./CategoryList.js";
-import "./QuestionList.css";
-import {
   MDBCol,
   MDBBadge,
   MDBContainer,
@@ -28,8 +23,11 @@ import {
   MDBTypography,
   MDBBox,
   MDBJumbotron,
+  MDBModal,
+  MDBModalHeader,
+  MDBModalBody,
+  MDBModalFooter,
 } from "mdbreact";
-import PaginationPage from "./Pagination.js";
 import { useHistory, useLocation, Link } from "react-router-dom";
 import PaginationLink from "./PaginationLink.js";
 import ProjectSec from "./ProjectSec.js";
@@ -56,11 +54,11 @@ export default function AlgoList(props) {
   const [cateKeyword, setCateKeyword] = useState("");
   const [keyword, setKeyword] = useState(query.get(QUERYSTR_PREFIX));
   const [limit, setLimit] = useState(0);
-  // state={
-  //   collapseID: "collapse1"
-  // }
+  const [openCreateModal, setOpenCreateModal] = useState(false);
 
-  // console.log(props.QuestionList.ques);
+  const toggleCreateModal = () => {
+    setOpenCreateModal(!openCreateModal);
+  };
   const deleteItem = async (id) => {
     console.log(id);
     const url = `https://bamboobackend123.herokuapp.com/ques/${id}`;
@@ -374,6 +372,53 @@ export default function AlgoList(props) {
           Next Page
         </PaginationLink>
       </MDBRow>
+      <MDBContainer>
+        <MDBBtn onClick={toggleCreateModal}>Modal</MDBBtn>
+        <MDBModal isOpen={openCreateModal} toggle={toggleCreateModal}>
+          <MDBModalHeader toggle={toggleCreateModal}>
+            MDBModal title
+          </MDBModalHeader>
+          <MDBModalBody>   <Form onSubmit={props.createQues}>
+                          <Form.Row>
+                            <Form.Group as={Col} controlId="formGridEmail">
+                              <Form.Label>Questions Title</Form.Label>
+                              <Form.Control
+                                type="email"
+                                placeholder="Interview Questions etc..."
+                                onChange={(e) => props.setTitle(e)}
+                              />
+                            </Form.Group>
+                          </Form.Row>
+
+                          <Form.Group id="formGridCheckbox">
+                            <Form.Check type="checkbox" label="Check me out" />
+                          </Form.Group>
+                          <Form.Group controlId="exampleForm.ControlTextarea1">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                              as="textarea"
+                              rows="9"
+                              onChange={(e) => props.setDescription(e)}
+                            />
+                          </Form.Group>
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            onClick={() => {
+                              props.createQues();
+                            }}
+                          >
+                            Submit
+                          </Button>
+                        </Form></MDBModalBody>
+          <MDBModalFooter>
+            <MDBBtn color="secondary" onClick={toggleCreateModal}>
+              Close
+            </MDBBtn>
+            <MDBBtn color="primary">Save changes</MDBBtn>
+          </MDBModalFooter>
+        </MDBModal>
+      </MDBContainer>
     </div>
     //sfdsfdsf
   );

@@ -14,7 +14,7 @@ export default function Email() {
       <Link to="/api/movie"><MDBBtn color="success">Movie API</MDBBtn></Link> 
       <Link to="/api/weather"><MDBBtn color="success">Weather API</MDBBtn></Link>
       <Link to="/question"><MDBBtn color="warning">Question list</MDBBtn></Link>
-      <MDBBtn color="danger">Danger</MDBBtn>
+      <Link to="/api/mememaker"><MDBBtn color="danger">MemeMaker</MDBBtn></Link>
 
     </div>
       

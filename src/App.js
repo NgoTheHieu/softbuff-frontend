@@ -16,6 +16,7 @@ import AdminPage from "./pages/AdminPage"
 import APIPage from "./pages/API"
 import WeatherPage from "./pages/API/Weather"
 import MoviePage from "./pages/API/Movie"
+import MemeMaker from "./pages/API/MemeMaker"
 function App(props) {
   let user2 = {
     isAuthenticated: true,
@@ -63,6 +64,7 @@ function App(props) {
       <Route path="/api" exact component={(props)=><APIPage {...props}/>} />
       <Route path="/api/weather" exact component={(props)=><WeatherPage {...props}/>} />
       <Route path="/api/movie" exact component={(props)=><MoviePage {...props}/>} />
+      <Route path="/api/mememaker" exact component={(props)=><MemeMaker {...props}/>} />
       <ProtectedRoute
         path="/user/:id"
         render={(props) => <AlgoDetail {...props} />}

@@ -21,8 +21,9 @@ import {
   MDBCardImage,
   MDBCardBody,
   MDBCardTitle,
-  MDBCardText,
+  MDBCardText,MDBBtn
 } from "mdbreact";
+import {Link} from "react-router-dom"
 import "../pages/pagedescript.css";
 export default function MainPage(props) {
   const [user, setUser] = useState({});

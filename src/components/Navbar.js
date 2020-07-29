@@ -171,6 +171,30 @@ class Navbar2 extends React.Component {
             </MDBMask>
           </MDBView>
         )}
+        {this.props.portfolio ? <MDBView>
+            <video
+              className="video-intro"
+              poster=""
+              playsInline
+              autoPlay
+              muted={true}
+              loop
+            >
+              <source src="bamboo2.mp4" type="video/mp4" repeat={true} />
+            </video>
+            <MDBMask className="d-flex justify-content-center align-items-center gradient">
+              <MDBContainer className="px-md-3 px-sm-0">
+                <MDBRow>
+                  <MDBCol md="12" className="mb-4 text-purple text-center">
+                    <h3 className="display-3 mb-0 pt-md-5 success">
+                      <MDBIcon icon="quote-left" size="1x" pull="left" border />
+                      <h1 className="text-success text-center">I am Ngo The Hieu</h1>
+                    </h3>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </MDBMask>
+          </MDBView>:null}
       </div>
     );
   }

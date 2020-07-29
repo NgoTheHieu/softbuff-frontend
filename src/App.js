@@ -13,8 +13,9 @@ import SignupPage from "./pages/SignupPage";
 import CreatePage from "./pages/Create";
 import ProfilePage from "./pages/ProfilePage"
 import AdminPage from "./pages/AdminPage"
-import EmailPage from "./pages/API"
+import APIPage from "./pages/API"
 import WeatherPage from "./pages/API/Weather"
+import MoviePage from "./pages/API/Movie"
 function App(props) {
   let user2 = {
     isAuthenticated: true,
@@ -59,8 +60,9 @@ function App(props) {
       <Route path="/admin" exact component={(props)=><AdminPage {...props}/>} />
       {/* this handle event that switch user to well, .. Jobs page */}
       <Route path="/portfolio" exact component={(props)=><AdminPage {...props}/>} />
-      <Route path="/api/email" exact component={(props)=><EmailPage {...props}/>} />
+      <Route path="/api" exact component={(props)=><APIPage {...props}/>} />
       <Route path="/api/weather" exact component={(props)=><WeatherPage {...props}/>} />
+      <Route path="/api/movie" exact component={(props)=><MoviePage {...props}/>} />
       <ProtectedRoute
         path="/user/:id"
         render={(props) => <AlgoDetail {...props} />}

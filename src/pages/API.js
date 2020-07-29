@@ -7,15 +7,17 @@ export default function Email() {
   return (
     <div>
       <Navbar2 />
-
-      <MDBBtn color="primary">Sending Mail </MDBBtn>
+    <div className="text-center">
+    <MDBBtn color="primary">Sending Mail </MDBBtn>
       <MDBBtn>Default</MDBBtn>
       <MDBBtn color="secondary">Web Scraping</MDBBtn>
-      <MDBBtn color="success">Movie API</MDBBtn>
-      <Link to="/api/weather"><MDBBtn color="info">Weather API</MDBBtn></Link>
-      <MDBBtn color="warning">Warning</MDBBtn>
+      <Link to="/api/movie"><MDBBtn color="success">Movie API</MDBBtn></Link> 
+      <Link to="/api/weather"><MDBBtn color="success">Weather API</MDBBtn></Link>
+      <Link to="/question"><MDBBtn color="warning">Question list</MDBBtn></Link>
       <MDBBtn color="danger">Danger</MDBBtn>
 
+    </div>
+      
       <Footer />
     </div>
   );

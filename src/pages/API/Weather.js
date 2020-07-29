@@ -10,19 +10,25 @@ import {
   MDBContainer,
   MDBRow,
 } from "mdbreact";
+import "../pagedescript.css"
 export default function Weather() {
   const [dataList, setDataList] = useState(null);
-  const [city, setCity] = useState("berlin");
+  const [city, setCity] = useState("singapore");
 
   const getData = async (e) => {
     if (e) {
       e.preventDefault();
     }
-    const url = `http://localhost:5000/weather?city=${city}`;
+    if(city){
+      
+    const url = `https://bamboobackend123.herokuapp.com/weather?city=${city}`;
     const data = await fetch(url);
     const res = await data.json();
     console.log(res);
     setDataList(res);
+    } else {
+      alert("Enter a city name first")
+    }
   };
   useEffect(() => {
     getData();
@@ -30,9 +36,12 @@ export default function Weather() {
   console.log(city);
   console.log(dataList);
   return (
-    <div>
+    <div className="bodyimage">
       <Navbar2 />
-      Welcome to weather app
+    
+      <MDBContainer>
+        <MDBJumbotron>
+        <h1 className="text-center text-success">Welcome to weather News API App</h1>
       <MDBCol md="12">
         <MDBFormInline onSubmit={getData} className="md-form mr-auto mb-4">
           <input
@@ -55,8 +64,6 @@ export default function Weather() {
           </MDBBtn>
         </MDBFormInline>
       </MDBCol>
-      <MDBContainer>
-        <MDBJumbotron>
           <MDBRow>
             {" "}
             <MDBCol>
@@ -145,7 +152,6 @@ export default function Weather() {
           <MDBRow>
             {" "}
             <MDBCol>
-              <div>Hourly:</div>
             </MDBCol>
           </MDBRow>
         </MDBJumbotron>

@@ -20,7 +20,7 @@ import {
   MDBDropdownMenu,
   MDBDropdownItem,
 } from "mdbreact";
-import {DropdownButton,ButtonGroup,Dropdown} from "react-bootstrap"
+import { DropdownButton, ButtonGroup, Dropdown } from "react-bootstrap";
 import "./Navbar.css";
 import NavbarSearch from "./NavbarSearch";
 import ProjectSec from "./ProjectSec.js";
@@ -75,6 +75,14 @@ class Navbar2 extends React.Component {
                       </MDBBtn>
                     </MDBNavLink>
                   </MDBNavItem>
+                  <MDBNavItem>
+                    <MDBNavLink to="/api">
+                      {" "}
+                      <MDBBtn color="green" size="sm">
+                        API
+                      </MDBBtn>
+                    </MDBNavLink>
+                  </MDBNavItem>
                 </MDBNavbarNav>
                 <MDBNavbarNav right>
                   <MDBNavItem>
@@ -83,35 +91,18 @@ class Navbar2 extends React.Component {
                         Signup
                       </MDBBtn>
                     </MDBNavLink>
-                    
                   </MDBNavItem>
-                  <MDBNavItem>
-                  <DropdownButton
-        as={ButtonGroup}
-        key={`success`}
-        id={`dropdown-variants-success`}
-        variant={`success`.toLowerCase()}
-        title={`API`}
-      >
-        <Dropdown.Item eventKey="1">WebScraping </Dropdown.Item>
-        <Dropdown.Item eventKey="2">Contact</Dropdown.Item>
-        <Dropdown.Item eventKey="3" active>
-          Active Item
-        </Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item eventKey="4">Separated link</Dropdown.Item>
-      </DropdownButton>
-      </MDBNavItem>
-      
-                  {this.props.user ? <MDBNavItem>
-                    <MDBNavLink to="/create">
-                      <MDBBtn color="green" size="sm">
-                        Create Question
-                      </MDBBtn>
-                    </MDBNavLink>
-                  
-                  </MDBNavItem> : (null
-                  )}
+                  <MDBNavItem></MDBNavItem>
+
+                  {this.props.user ? (
+                    <MDBNavItem>
+                      <MDBNavLink to="/create">
+                        <MDBBtn color="green" size="sm">
+                          Create Question
+                        </MDBBtn>
+                      </MDBNavLink>
+                    </MDBNavItem>
+                  ) : null}
                   {this.props.user ? null : (
                     <MDBNavItem>
                       <MDBNavLink to="/login">
@@ -153,31 +144,33 @@ class Navbar2 extends React.Component {
           {this.state.collapseID && overlay}
         </div>
         {/* </Router> */}
-        {this.props.noview?null:<MDBView>
-          <video
-            className="video-intro"
-            poster=""
-            playsInline
-            autoPlay
-            muted={true}
-            loop
-          >
-            <source src="bamboo2.mp4" type="video/mp4" repeat={true} />
-          </video>
-          <MDBMask className="d-flex justify-content-center align-items-center gradient">
-            <MDBContainer className="px-md-3 px-sm-0">
-              <MDBRow>
-                <MDBCol md="12" className="mb-4 text-purple text-center">
-                  <h3 className="display-3 mb-0 pt-md-5 success">
-                    <MDBIcon icon="quote-left" size="1x" pull="left" border />
-                    “Though the bamboo forest is dense, water flows through it freely.”
-                  </h3>
-                </MDBCol>
-              </MDBRow>
-            </MDBContainer>
-          </MDBMask>
-        </MDBView>}
-        
+        {this.props.noview ? null : (
+          <MDBView>
+            <video
+              className="video-intro"
+              poster=""
+              playsInline
+              autoPlay
+              muted={true}
+              loop
+            >
+              <source src="bamboo2.mp4" type="video/mp4" repeat={true} />
+            </video>
+            <MDBMask className="d-flex justify-content-center align-items-center gradient">
+              <MDBContainer className="px-md-3 px-sm-0">
+                <MDBRow>
+                  <MDBCol md="12" className="mb-4 text-purple text-center">
+                    <h3 className="display-3 mb-0 pt-md-5 success">
+                      <MDBIcon icon="quote-left" size="1x" pull="left" border />
+                      “Though the bamboo forest is dense, water flows through it
+                      freely.”
+                    </h3>
+                  </MDBCol>
+                </MDBRow>
+              </MDBContainer>
+            </MDBMask>
+          </MDBView>
+        )}
       </div>
     );
   }
